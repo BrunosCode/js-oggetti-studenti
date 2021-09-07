@@ -12,7 +12,7 @@ let student1 = {
 }
 
 // 2. Print all properties
-document.getElementById("list").innerHTML += `<li>The first student is ${student1.name} ${student1.surname}, he is ${student1.age} years old</li>`;
+// document.getElementById("list").innerHTML += `<li>The first student is ${student1.name} ${student1.surname}, he is ${student1.age} years old</li>`;
 
 // 3. Make an array of student objects
 let students = [
@@ -59,3 +59,24 @@ document.getElementById("new-student").addEventListener("click", () => {
     printStudents();
 
 })
+
+// 6. Delete a student by his position in the list
+document.getElementById("delete-student").addEventListener("click", () => {
+    // ask new data
+    let deletedStudentIndex = parseInt(prompt("List position of the student to be removed")) - 1;
+
+    if ( !isNaN(deletedStudentIndex) && deletedStudentIndex > 0 && deletedStudentIndex < students.length ) {
+        // delete student
+        let remainingStudents = [];
+        for ( let i = 0; i < students.length; i++) {
+            if ( i !== deletedStudentIndex ) {
+                remainingStudents.push(students[i]);
+            }
+        }
+        students = remainingStudents;
+            
+        // print all new student
+        document.getElementById("list").innerHTML = "";
+        printStudents();
+    }
+});
