@@ -4,6 +4,12 @@
 // Ciclare su tutti gli studenti e stampare per ognuno di essi, nome e cognome.
 // Dare la possibilità all’utente, attraverso 3 prompt(), di aggiungere un nuovo oggetto studente inserendo nell’ordine: nome, cognome e età.
 
+
+// SHORTCUTS
+const newStudentBtn = document.getElementById("new-student");
+const deleteStudentBtn = document.getElementById("delete-student");
+
+// CLASS
 // 0. Class student
 class Student {
     constructor(name, surname, age) {
@@ -38,7 +44,7 @@ const printStudents = () => {
 printStudents();
 
 // 5. Insert a student using user data
-document.getElementById("new-student").addEventListener("click", () => {
+newStudentBtn.addEventListener("click", () => {
     // ask new data
     let newName = prompt("New student's name");
     let newSurname = prompt("New student's surname");
@@ -57,7 +63,7 @@ document.getElementById("new-student").addEventListener("click", () => {
 })
 
 // 6. Delete a student by his position in the list
-document.getElementById("delete-student").addEventListener("click", () => {
+deleteStudentBtn.addEventListener("click", () => {
     // Ask new data
     let deletedStudentIndex = parseInt(prompt("List position of the student to be removed")) - 1;
 
