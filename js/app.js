@@ -4,35 +4,35 @@
 // Ciclare su tutti gli studenti e stampare per ognuno di essi, nome e cognome.
 // Dare la possibilità all’utente, attraverso 3 prompt(), di aggiungere un nuovo oggetto studente inserendo nell’ordine: nome, cognome e età.
 
-// 1. Make a student object
-let student1 = {
-    name: "Edoardo",
-    surname: "Magnani",
-    age: 27
+// Class student
+class Student {
+    constructor(name, surname, age) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+    }
+    presentation() {
+        return `${this.name} ${this.surname}, ${this.age} years old`;
+    }
 }
 
+// 1. Make a student object
+let student1 = new Student("Edoardo", "Magnani", 27);
+
 // 2. Print all properties
-// document.getElementById("list").innerHTML += `<li>The first student is ${student1.name} ${student1.surname}, he is ${student1.age} years old</li>`;
+// document.getElementById("list").innerHTML += `<li>${student1.presentation()}</li>`;
 
 // 3. Make an array of student objects
 let students = [
     student1,
-    {
-        name: "Giovanni",
-        surname: "Rossi",
-        age: 25
-    },
-    {
-        name: "Paolo",
-        surname: "Verdi",
-        age: 29
-    }
+    new Student("Giovanni", "Rossi", 25),
+    new Student("Paolo", "Verdi", 29)
 ]
 
 // 4. Print all property for each student
 const printStudents = () => {
     for (student of students) {
-        document.getElementById("list").innerHTML += `<li>${student.name} ${student.surname}, ${student.age} years old</li>`;
+        document.getElementById("list").innerHTML += `<li>${student.presentation()}</li>`;
     }
 }
 printStudents();
