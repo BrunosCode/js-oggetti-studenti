@@ -4,7 +4,7 @@
 // Ciclare su tutti gli studenti e stampare per ognuno di essi, nome e cognome.
 // Dare la possibilità all’utente, attraverso 3 prompt(), di aggiungere un nuovo oggetto studente inserendo nell’ordine: nome, cognome e età.
 
-// Class student
+// 0. Class student
 class Student {
     constructor(name, surname, age) {
         this.name = name;
@@ -42,17 +42,13 @@ document.getElementById("new-student").addEventListener("click", () => {
     // ask new data
     let newName = prompt("New student's name");
     let newSurname = prompt("New student's surname");
-    let newAge = prompt("New student's age");
-
-    // new student object
-    let newStudent = {
-        name: newName,
-        surname: newSurname,
-        age: newAge
+    let newAge = prompt("New student's age"); 
+    while ( isNaN(newAge) || newAge < 0 ) {
+        newAge = prompt("Type a valid age number"); 
     }
 
     // add new student to the students array
-    students.push(newStudent);
+    students.push(new Student(newName, newSurname, newAge));
 
     // print all new student
     document.getElementById("list").innerHTML = "";
@@ -62,21 +58,24 @@ document.getElementById("new-student").addEventListener("click", () => {
 
 // 6. Delete a student by his position in the list
 document.getElementById("delete-student").addEventListener("click", () => {
-    // ask new data
+    // Ask new data
     let deletedStudentIndex = parseInt(prompt("List position of the student to be removed")) - 1;
 
-    if ( !isNaN(deletedStudentIndex) && deletedStudentIndex > 0 && deletedStudentIndex < students.length ) {
-        // delete student
-        let remainingStudents = [];
-        for ( let i = 0; i < students.length; i++) {
-            if ( i !== deletedStudentIndex ) {
-                remainingStudents.push(students[i]);
-            }
-        }
-        students = remainingStudents;
-            
-        // print all new student
-        document.getElementById("list").innerHTML = "";
-        printStudents();
+    // Validation
+    while ( isNaN(deletedStudentIndex) || deletedStudentIndex < 0 || deletedStudentIndex >= students.length ) {
+        deletedStudentIndex = parseInt(prompt("Type a valid list position")) - 1;
     }
+
+    // Delete student
+    let remainingStudents = [];
+    for ( let i = 0; i < students.length; i++) {
+        if ( i !== deletedStudentIndex ) {
+            remainingStudents.push(students[i]);
+        }
+    }
+    students = remainingStudents;
+        
+    // print all new student
+    document.getElementById("list").innerHTML = "";
+    printStudents();
 });
